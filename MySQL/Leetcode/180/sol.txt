@@ -1,0 +1,46 @@
+/* all numbers 1) Three times consecutively 
+		2) Order -> any */
+
+/* logs table: id, num */
+
+
+
+	/* id 		num 
+
+	   1 		2	
+	   2		2
+	   3		2
+	   4		3
+	   5		1	
+	   6		1			
+	   7		1
+
+	*/
+
+
+/* 	
+	1) t1 t2 t3 
+	2) t1.id, t2.id = (t1.id -> 2), t3 -> (t1.id -> 3) */ 
+
+
+	# having 
+	# partition by 
+	# case when 
+	# Nullif
+	# group by 
+	# order by 
+	# concat
+	# delete
+	# rank
+	# dense_rank
+	# ntile
+	# row_number
+	# set var 
+	# limit 
+	#offset 
+
+
+
+
+
+

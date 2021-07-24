@@ -1,0 +1,12 @@
+/* All F to M and vice versa. Update, no temp tables. */
+/* Single update statement.  */ 
+/* Tables : Salary : id, name, sex, salary */
+
+
+update salary
+set sex = 
+case
+    when sex = 'f' then 'm'
+    when sex = 'm' then 'f'
+end;
+
