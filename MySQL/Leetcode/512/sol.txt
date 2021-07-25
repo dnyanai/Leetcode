@@ -1,0 +1,13 @@
+##1 group by (better):
+select player_id, device_id
+from activity
+where (player_id, event_date) IN
+(select player_id, min(event_date) as 'first_login'
+from activity
+group by player_id)
+
+
+
+##2 partition by:
+SELECT player_id, event_date, SUM(games_played) OVER (PARTITION BY player_id ORDER BY event_date) as "games_played_so_far"
+FROM activity

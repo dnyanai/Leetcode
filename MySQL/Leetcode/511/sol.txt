@@ -1,0 +1,10 @@
+## Group by (better):
+select player_id, min(event_date) as 'first_login'
+from activity
+group by player_id 
+
+## Partition by, rank:
+select t.player_id, t.event_date as 'first_login'
+from (select player_id, dense_rank() over (partition by player_id order by event_date asc) as "rank", event_date 
+from activity) t
+where t.rank = 1

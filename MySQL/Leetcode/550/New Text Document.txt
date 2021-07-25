@@ -1,0 +1,68 @@
+/* 
+FROM 
+ON 
+JOIN 
+WHERE 
+GROUP BY 
+HAVING
+- SELECT 
+ORDER BY 
+LIMIT-OFFSET
+
+OVER 
+PARTITION BY 
+MAX/MIN/SUM/COUNT
+DISTINCT
+IN/IS/BETWEEN 
+LEAD / LAG
+RANK / DENSE_RANK
+ROW_NUMBER
+WHERE -> LIKE %, _, [], [!] 
+*/
+
+
+
+
+
+/* 
+
+1) 2 consecutive days : Date diff -> event_date - lag(event_date) = 1
+2) sum(player_id who did 1)) / count(player_id)
+
+*/
+
+with cte as(
+    select t.* 
+    from
+    (select distinct(player_id), event_date, lag(event_date) over (order by player_id) as 'prev_event_date'
+from activity) t
+where t.event_date - t.prev_event_date = 1
+group by player_id)
+
+
+select round(count(distinct(cte.player_id)) / count(distinct(a.player_id)),2) as fraction
+from activity a, cte
+
+
+
+##2
+
+with cte as (
+    SELECT t.first_login, COUNT(DISTINCT(t.player_id)) AS 'hardcore_players'
+FROM (SELECT player_id, min(event_date) as 'first_login'
+FROM activity GROUP BY player_id) t)
+    
+
+SELECT round(cte.hardcore_players / count(distinct(a.player_id)),2) as fraction
+FROM activity a , cte
+where a.player_id = cte.player_id and (a.event_date - cte.first_login) = 1
+
+
+
+
+
+
+
+
+
+
