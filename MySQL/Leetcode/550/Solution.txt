@@ -1,0 +1,49 @@
+
+##1:
+
+WITH CTE as (SELECT player_id, MIN(event_date) as 'first_login'
+FROM Activity 
+GROUP BY player_id)
+
+
+SELECT round(count(a.player_id)/ count(c.player_id),2) as 'fraction'
+FROM CTE c
+LEFT JOIN Activity a 
+ON c.player_id = a.player_id
+AND c.first_login + 1 = a.event_date
+
+
+##2: 
+
+
+
+/* 
+1) Day after they day they first logged in : first_day_login + 1.
+2) Fraction : #((1)) / #players. 
+
+*/
+
+WITH first_login AS (SELECT player_id, min(event_date) as 'first_login'
+FROM activity 
+GROUP BY player_id),
+
+consecutive_dates AS ( SELECT a.player_id, a.games_played
+                       FROM Activity a 
+                       WHERE DATE(a.event_date) - DATE((select first_login from first_login f where a.player_id = f.player_id)) = 1),
+                       
+total_players AS ( SELECT COUNT(DISTINCT(player_id)) as 'total_players'
+FROM Activity)
+                       
+
+
+/* 
+    1 : 5,6, 8
+    c.player_id c.games_played a.games_played
+    1           5               5               
+    1           6               6
+    1           Null            8
+    
+*/
+SELECT round(count(distinct(c.player_id))/ t.total_players,2) as "fraction"
+FROM consecutive_dates c, total_players t
+
