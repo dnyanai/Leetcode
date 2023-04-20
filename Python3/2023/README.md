@@ -1,5 +1,6 @@
 # Problem Solving and Puzzles on common interview prep platforms:
 Leetcode
-<n> Code Signal
-<n> Hacker Rank
-<n> Interview Qs
+<br /> StrataScratch
+<br /> Code Signal
+<br /> Hacker Rank
+<br /> Interview Qs
