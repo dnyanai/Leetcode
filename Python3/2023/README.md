@@ -1,5 +1,5 @@
 # Problem Solving and Puzzles on common interview prep platforms:
 Leetcode
-Code Signal
-Hacker Rank
-Interview Qs
+<n> Code Signal
+<n> Hacker Rank
+<n> Interview Qs
