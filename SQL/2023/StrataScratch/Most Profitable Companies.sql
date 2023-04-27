@@ -1,4 +1,4 @@
--- [https://platform.stratascratch.com/coding/10354-most-profitable-companies?code_type=1]
+-- https://platform.stratascratch.com/coding/10354-most-profitable-companies?code_type=1
 -- explain(analyze, verbose)
 select t.company, t.profits profit
                           from (
