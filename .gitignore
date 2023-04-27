@@ -129,3 +129,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+MySQL/.DS_Store
+MySQL/2021/.DS_Store
